@@ -1,36 +1,62 @@
 import SectionTitle from "@/components/SectionTitle";
-import SkillBar from "@/components/SkillBar";
-import { skillGroups } from "@/data/skills";
+import { interests, softSkills, languages } from "@/data/interests";
 
-export const metadata = { title: "Technical Skills" };
+export const metadata = { title: "Beyond Tech" };
 
-export default function SkillsPage() {
+export default function InterestsPage() {
   return (
     <div>
       <SectionTitle
-        eyebrow="Dashboard 01"
-        title="Technical skills"
-        subtitle="The tools and technologies I work with, and how comfortable I am with each."
-        colorClass="text-skills"
+        eyebrow="Dashboard 02"
+        title="Beyond the code"
+        subtitle="The skills, interests and passions that make me who I am outside of tech."
+        colorClass="text-interests"
       />
 
-      <div className="grid gap-6 md:grid-cols-2">
-        {skillGroups.map((group) => (
-          <section
-            key={group.category}
-            className="rounded-2xl border border-white/10 bg-surface p-6"
+      {/* Interest cards */}
+      <div className="grid gap-5 sm:grid-cols-2">
+        {interests.map((item) => (
+          <div
+            key={item.title}
+            className="rounded-2xl border border-white/10 bg-surface p-6 transition hover:-rotate-1 hover:border-interests/60"
           >
-            <h2 className="mb-5 font-display text-xl font-semibold text-skills">
-              {group.category}
-            </h2>
-            <div className="space-y-4">
-              {group.skills.map((s) => (
-                <SkillBar key={s.name} name={s.name} level={s.level} />
-              ))}
-            </div>
-          </section>
+            <div className="text-4xl">{item.emoji}</div>
+            <h2 className="mt-3 font-display text-xl font-semibold">{item.title}</h2>
+            <p className="mt-1 text-sm text-muted">{item.note}</p>
+          </div>
         ))}
       </div>
+
+      {/* Soft skills */}
+      <section className="mt-10 rounded-2xl border border-white/10 bg-surface p-6">
+        <h2 className="font-display text-xl font-semibold text-interests">Soft skills</h2>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {softSkills.map((s) => (
+            <span
+              key={s}
+              className="rounded-full bg-interests/15 px-4 py-1.5 text-sm text-interests"
+            >
+              {s}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* Languages */}
+      <section className="mt-6 rounded-2xl border border-white/10 bg-surface p-6">
+        <h2 className="font-display text-xl font-semibold text-interests">Languages</h2>
+        <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+          {languages.map((l) => (
+            <li
+              key={l.name}
+              className="flex justify-between border-b border-white/10 pb-2 text-sm"
+            >
+              <span>{l.name}</span>
+              <span className="text-muted">{l.level}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
   );
 }
