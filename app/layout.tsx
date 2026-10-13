@@ -2,15 +2,14 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { profile } from "@/data/profile";
 
-// Fonts: one for headings, one for normal text
 const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-display" });
 const body = Inter({ subsets: ["latin"], variable: "--font-body" });
 
-// This sets the browser tab title
 export const metadata: Metadata = {
-  title: "Sunil | Personal Site",
-  description: "My profile, skills and writings.",
+  title: `${profile.name} | Personal Site`,
+  description: profile.tagline,
 };
 
 export default function RootLayout({
@@ -18,9 +17,12 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${display.variable} ${body.variable}`}>
-      <body className="min-h-screen font-body antialiased">
+      <body className="glow min-h-screen font-body antialiased">
         <Navbar />
         <main className="mx-auto max-w-5xl px-5 pb-24 pt-28">{children}</main>
+        <footer className="pb-10 text-center text-sm text-muted">
+          © {new Date().getFullYear()} {profile.name}. Built with Next.js and Tailwind.
+        </footer>
       </body>
     </html>
   );

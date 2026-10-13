@@ -4,7 +4,7 @@ export default function ProfilePage() {
   return (
     <div>
       {/* Top section: name, role, buttons */}
-      <section>
+      <section className="animate-rise">
         <p className="text-sm font-semibold uppercase tracking-widest text-profile">
           Hello, I&apos;m
         </p>
@@ -33,7 +33,7 @@ export default function ProfilePage() {
 
       {/* Bottom section: about card and facts card */}
       <section className="mt-16 grid gap-6 md:grid-cols-3">
-        <div className="rounded-2xl border border-white/10 bg-surface p-6 md:col-span-2">
+        <div className="animate-rise rounded-2xl border border-white/10 bg-surface p-6 md:col-span-2">
           <h2 className="font-display text-2xl font-semibold text-profile">About me</h2>
           <div className="mt-4 space-y-4 text-muted">
             {profile.about.map((p, i) => (
@@ -42,7 +42,7 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-white/10 bg-surface p-6">
+        <div className="animate-rise rounded-2xl border border-white/10 bg-surface p-6">
           <h2 className="font-display text-2xl font-semibold text-profile">Quick facts</h2>
           <dl className="mt-4 space-y-3 text-sm">
             {profile.facts.map((f) => (

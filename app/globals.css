@@ -2,26 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   YOUR THEME. Change the numbers to change the whole site.
+   Colors are R G B numbers (0-255), with no commas.
+   ============================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: 14 14 26;
+  --surface: 26 26 46;
+  --text: 238 238 246;
+  --muted: 150 150 178;
+
+  --c-profile: 167 139 250;
+  --c-skills: 56 189 248;
+  --c-interests: 244 114 182;
+  --c-articles: 251 191 36;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(var(--bg));
+  color: rgb(var(--text));
+  font-family: var(--font-body), system-ui, sans-serif;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* Soft glowing blobs behind the page, built from your accent colors */
+.glow::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(600px circle at 15% 10%, rgb(var(--c-profile) / 0.15), transparent 60%),
+    radial-gradient(500px circle at 85% 30%, rgb(var(--c-interests) / 0.1), transparent 60%),
+    radial-gradient(600px circle at 50% 100%, rgb(var(--c-skills) / 0.1), transparent 60%);
 }
